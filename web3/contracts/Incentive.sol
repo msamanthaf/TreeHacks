@@ -46,7 +46,6 @@ contract Incentive {
         
         (bool sent,) = payable(report.finder).call{value: amount}("");
         require(sent, "Payment failed");
-        report.accepted = true;
     }
 
     function getReports() public view returns (Report[] memory) {
