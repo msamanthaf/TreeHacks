@@ -1,15 +1,15 @@
 import React from "react";
-import { SignIn } from "../Components";
+import Main from "../Components/Main";
 import { IncentiveProvider } from "../Context/Incentive";
 
-function Index() {
+function Dashboard() {
 	return (
 		<>
 			<IncentiveProvider>
-				<SignIn />
+				<Main />
 			</IncentiveProvider>
 		</>
 	);
 }
 
-export default Index;
+export default Dashboard;

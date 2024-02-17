@@ -3,10 +3,14 @@ import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 
-import { IncentiveABI, IncentiveAddress } from "./constants";
+import {
+	IncentiveABI,
+	getIncentiveAddress,
+	getSelectedCountry,
+} from "./constants";
 
 const fetchContract = (signerOrProvider) =>
-	new ethers.Contract(IncentiveAddress, IncentiveABI, signerOrProvider);
+	new ethers.Contract(getIncentiveAddress(), IncentiveABI, signerOrProvider);
 
 export const IncentiveContext = React.createContext();
 

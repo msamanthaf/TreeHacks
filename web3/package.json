@@ -16,6 +16,7 @@
 		"ethers": "^5.7.2",
 		"hardhat": "^2.13.0",
 		"next": "13.2.4",
+		"node-localstorage": "^3.0.5",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"web3modal": "^1.9.12"

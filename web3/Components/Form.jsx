@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { getSelectedCountry } from '../Context/constants';
 
-const Form = ({ titleData, createReport }) => {
+const Form = ({ createReport, selectedCountry }) => {
   const [report, setReport] = useState({
     targetName: "",
     targetAge: "",
@@ -25,6 +26,9 @@ const Form = ({ titleData, createReport }) => {
     setReport({ ...report, date: currentDate });
   };
 
+  const country = getSelectedCountry();
+console.log(country);
+
   return (
     <div className="relative bg-opacity-75">
       <div className="relative flex flex-row px-4 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 items-center justify-center">
@@ -37,9 +41,18 @@ const Form = ({ titleData, createReport }) => {
             <p className="text-stone-50">
               Blockchain-powered web3 app for crowdsourcing information gathering (OSINT) to help solve missing person cases.
             </p>
-            <a href="https://www.namus.gov/MissingPersons/Search#/results" aria-label="" className="mt-10 inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700 text-gray-200">
-              List of Missing People ➪
-            </a>
+			<a
+  href={selectedCountry === "USA"
+      ? "https://www.namus.gov/MissingPersons/Search#/results"
+      : "https://bc-cb.rcmp-grc.gc.ca/ViewPage.action?siteNodeId=464&languageId=1&contentId=-1"
+  }
+  aria-label=""
+  className="mt-10 inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700 text-gray-200"
+>
+  {selectedCountry}'s List of Missing People ➪
+</a>
+
+
           </div>
         </div>
         <form className="flex flex-col w-1/2 ml-28 bg-white rounded">
