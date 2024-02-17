@@ -3,11 +3,7 @@ import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 
-import {
-	IncentiveABI,
-	getIncentiveAddress,
-	getSelectedCountry,
-} from "./constants";
+import { IncentiveABI, getIncentiveAddress } from "./constants";
 
 const fetchContract = (signerOrProvider) =>
 	new ethers.Contract(getIncentiveAddress(), IncentiveABI, signerOrProvider);
@@ -19,8 +15,17 @@ export const IncentiveProvider = ({ children }) => {
 	const [currentAccount, setCurrentAccount] = useState("");
 
 	const createReport = async (report) => {
-		const { title, targetName, targetAge, description, evidence, date } =
-			report;
+		const {
+			title,
+			category,
+			targetName,
+			targetAge,
+			description,
+			evidence,
+			date,
+			status,
+			rejectionReason,
+		} = report;
 		const web3modal = new Web3Modal();
 		const connection = await web3modal.connect();
 		const provider = new ethers.providers.Web3Provider(connection);
@@ -32,12 +37,15 @@ export const IncentiveProvider = ({ children }) => {
 		try {
 			const transaction = await contract.createReport(
 				currentAccount,
+				category,
 				title,
 				targetName,
 				targetAge,
 				description,
 				evidence,
-				date
+				date,
+				status,
+				rejectionReason
 			);
 
 			await transaction.wait();
@@ -55,12 +63,15 @@ export const IncentiveProvider = ({ children }) => {
 
 		const parsedReports = reports.map((report, i) => ({
 			finder: report.finder,
+			category: report.category,
 			title: report.title,
 			targetAge: report.targetAge,
 			targetName: report.targetName,
 			description: report.description,
 			evidence: report.evidence,
 			date: report.date,
+			status: report.status,
+			rejectionReason: report.rejectionReason,
 			pId: i,
 		}));
 
@@ -84,19 +95,22 @@ export const IncentiveProvider = ({ children }) => {
 
 		const userData = filteredReports.map((report, i) => ({
 			finder: report.finder,
+			category: report.category,
 			title: report.title,
 			targetAge: report.targetAge,
 			targetName: report.targetName,
 			description: report.description,
 			evidence: report.evidence,
 			date: report.date,
+			status: report.status,
+			rejectionReason: report.rejectionReason,
 			pId: i,
 		}));
 
 		return userData;
 	};
 
-	const pay = async (finder, amount) => {
+	const pay = async (ID, finder, amount) => {
 		const web3modal = new Web3Modal();
 		const connection = await web3modal.connect();
 		const provider = new ethers.providers.Web3Provider(connection);
@@ -107,7 +121,7 @@ export const IncentiveProvider = ({ children }) => {
 		const finderAddress = ethers.utils.getAddress(finder);
 
 		try {
-			const transaction = await contract.send(finderAddress, {
+			const transaction = await contract.send(ID, finderAddress, {
 				value: ethers.utils.parseEther(amount),
 			});
 
@@ -159,6 +173,23 @@ export const IncentiveProvider = ({ children }) => {
 		}
 	};
 
+	const rejectReport = async (reportId, reason) => {
+		try {
+			const web3modal = new Web3Modal();
+			const connection = await web3modal.connect();
+			const provider = new ethers.providers.Web3Provider(connection);
+			const signer = provider.getSigner();
+			const contract = fetchContract(signer);
+
+			// Call the rejectReport function
+			await contract.rejectReport(reportId, reason);
+
+			console.log("Report rejected successfully.");
+		} catch (error) {
+			console.error("Error rejecting report:", error);
+		}
+	};
+
 	// Return the IncentiveContext.Provider outside of connectWallet function
 	return (
 		<IncentiveContext.Provider
@@ -170,6 +201,7 @@ export const IncentiveProvider = ({ children }) => {
 				getUserReports,
 				pay,
 				connectWallet,
+				rejectReport,
 			}}
 		>
 			{children}
