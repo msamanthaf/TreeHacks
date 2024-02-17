@@ -11,7 +11,6 @@ contract Incentive {
         string description;
         string evidence;
         address[] seeker;
-        bool accepted;
     }
 
     mapping(uint256 => Report) public reports;
