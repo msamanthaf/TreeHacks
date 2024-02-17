@@ -1,6 +1,15 @@
 import React from 'react';
 
 const Card = ({ reports, setOpenModel, setPay, title }) => {
+	const deprecateString = (inputString) => {
+		if (inputString.length <= 10) {
+		  return inputString; // If the string is 10 characters or less, return it as it is
+		}
+		// Otherwise, deprecate the string by showing only the first and last 5 characters
+		const firstFive = inputString.slice(0, 5);
+		const lastFive = inputString.slice(-5);
+		return `${firstFive}...${lastFive}`;
+	  };
 
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 text-white">
@@ -13,8 +22,9 @@ const Card = ({ reports, setOpenModel, setPay, title }) => {
             className="cursor-pointer border overflow-hidden transition-shadow duration-300 bg-white rounded"
           >
             <div className="py-5 pl-2">
-              <p className="mb-2 text-xs font-semibold text-gray-600 uppercase">
-                {report.date}
+              <p className="mb-2 text-xs font-semibold text-gray-600">
+                {report.date}&nbsp;
+                by {deprecateString(report.finder)}
               </p>
               <a
                 href="/"
@@ -26,7 +36,7 @@ const Card = ({ reports, setOpenModel, setPay, title }) => {
               </a>
               <p className="font-bold text-black mb-4">{report.title}</p>
               <div className="flex text-black flex-col">
-                <p className="font-semibold"> Description: {report.description}</p> 
+                <p className="font-semibold overflow-x-auto"> Description: {report.description}</p> 
                 <p className="font-semibold"> Evidence: <a href= {report.evidence} className='underline'> {report.evidence} </a> </p>
               </div>
             </div>

@@ -13,13 +13,16 @@ const Form = ({ titleData, createReport }) => {
   const createNewReport = async (e) => {
     e.preventDefault();
     try {
-	  const currentDate = new Date().toISOString().split('T')[0];
-	  setReport({...report, date: currentDate});
       const data = await createReport(report);
 	  window.location.reload();
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const updateReportDate = () => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    setReport({ ...report, date: currentDate });
   };
 
   return (
@@ -45,16 +48,20 @@ const Form = ({ titleData, createReport }) => {
           <label className="ml-5 mt-5 inline-block mb-1 font-medium" htmlFor="targetName">
             What Info Did You Find?
           </label>
-          <input
-            onChange={(e) => setReport({ ...report, title: e.target.value })}
-            placeholder="Title"
-            required
-            type="text"
-            className="self-center flex-grow w-3/4 h-8 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-            id="targetName"
-            name="targetName"
-          />
-
+		  <input
+ onChange={(e) => {
+    setReport({ ...report, title: e.target.value });
+  }}
+  onBlur={() => {
+    updateReportDate();
+  }}
+  placeholder="Title"
+  required
+  type="text"
+  className="self-center flex-grow w-3/4 h-8 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+  id="targetName"
+  name="targetName"
+/>
           <label className="ml-5 mt-1 inline-block mb-1 font-medium" htmlFor="targetName">
             Person Name
           </label>
