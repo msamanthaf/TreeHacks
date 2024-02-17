@@ -1,12 +1,15 @@
 import React from "react";
 import NavBar from "../Components/NavBar";
-//import { IncentiveProvider } from "../Context/Incentive";
+import Main from "../Components/Main";
+import { IncentiveProvider } from "../Context/Incentive";
 
 function Page() {
 	return (
 		<>
-			<NavBar />
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
+			<IncentiveProvider>
+				<NavBar />
+				<Main />
+			</IncentiveProvider>
 		</>
 	);
 }

@@ -144,21 +144,22 @@ export const IncentiveProvider = ({ children }) => {
 		} catch (error) {
 			console.log("Error wallet");
 		}
-
-		return (
-			<IncentiveContext.Provider
-				value={{
-					titleData,
-					currentAccount,
-					createReport,
-					getReports,
-					getUserReports,
-					pay,
-					connectWallet,
-				}}
-			>
-				{children}
-			</IncentiveContext.Provider>
-		);
 	};
+
+	// Return the IncentiveContext.Provider outside of connectWallet function
+	return (
+		<IncentiveContext.Provider
+			value={{
+				titleData,
+				currentAccount,
+				createReport,
+				getReports,
+				getUserReports,
+				pay,
+				connectWallet,
+			}}
+		>
+			{children}
+		</IncentiveContext.Provider>
+	);
 };
