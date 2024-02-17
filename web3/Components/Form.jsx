@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { getSelectedCountry } from '../Context/constants';
 
-const Form = ({ createReport, selectedCountry }) => {
+const Form = ({ createReport, selectedCountry, authority }) => {
   const [report, setReport] = useState({
+	category: "",
     targetName: "",
     targetAge: "",
     title: "",
     description: "",
     evidence: "",
 	date: "",
+	status: "pending",
+	rejectionReason: ""
   });
 
   const createNewReport = async (e) => {
     e.preventDefault();
+	if (!report.category || report.targetAge < 1) {
+		alert("Please fill in all info.");
+		return;
+	  }
     try {
       const data = await createReport(report);
 	  window.location.reload();
@@ -27,7 +34,6 @@ const Form = ({ createReport, selectedCountry }) => {
   };
 
   const country = getSelectedCountry();
-console.log(country);
 
   return (
     <div className="relative bg-opacity-75">
@@ -46,18 +52,35 @@ console.log(country);
       ? "https://www.namus.gov/MissingPersons/Search#/results"
       : "https://bc-cb.rcmp-grc.gc.ca/ViewPage.action?siteNodeId=464&languageId=1&contentId=-1"
   }
+  target="_blank"
   aria-label=""
   className="mt-10 inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700 text-gray-200"
 >
   {selectedCountry}'s List of Missing People ➪
 </a>
-
-
           </div>
         </div>
-        <form className="flex flex-col w-1/2 ml-28 bg-white rounded">
+		{!authority && <form className="flex flex-col w-1/2 ml-28 bg-white rounded">
           <text className="self-center font-bold mt-5"> Report Submission</text>
-
+		  <label className="ml-5 mt-5 inline-block mb-1 font-medium" htmlFor="relationship">
+            Category
+          </label>
+          <select
+            onChange={(e) => setReport({ ...report, category: e.target.value })}
+            className="self-center flex-grow w-3/4 h-8 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+            id="category"
+            name="category"
+            required
+          >
+            <option value="">Select Category</option>
+            <option value="Friends">Friends</option>
+            <option value="Employment">Employment</option>
+			<option value="Basic Subject Info">Basic Subject Info</option>
+			<option value="Advanced Subject Info">Advanced Subject Info</option>
+			<option value="Last Seen">Last Seen</option>
+			<option value="Dark Web">Dark Web</option>
+			<option value="Location">Location</option>
+          </select>
           <label className="ml-5 mt-5 inline-block mb-1 font-medium" htmlFor="targetName">
             What Info Did You Find?
           </label>
@@ -115,7 +138,6 @@ console.log(country);
             id="description"
             name="description"
           />
-
           <label className="ml-5 mt-1 inline-block mb-1 font-medium" htmlFor="targetName">
             Evidence
           </label>
@@ -137,7 +159,7 @@ console.log(country);
 >
             Submit Report
           </button>
-        </form>
+        </form>}
       </div>
     </div>
   );
