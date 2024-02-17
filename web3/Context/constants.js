@@ -28,8 +28,8 @@ export function getSelectedCountry() {
 const setIncentiveAddress = () => {
 	IncentiveAddress =
 		selectedCountry === "USA"
-			? "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-			: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+			? "0x72aAaC2727ccEFEFA7664D65a5fB2BFe3B45c513"
+			: "0x8c1bC8645437861B7122AB5897e0b86a0E2CEDe0";
 	// Check if localStorage is available (client-side)
 	if (typeof window !== "undefined") {
 		localStorage.setItem("IncentiveAddress", IncentiveAddress);
