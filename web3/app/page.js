@@ -1,7 +1,13 @@
 import React from "react";
+import NavBar from "../Components/NavBar";
 
-function page() {
-	return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+function Page() {
+	return (
+		<>
+			<NavBar />
+			<h1 className="text-3xl font-bold underline">Hello world!</h1>
+		</>
+	);
 }
 
-export default page;
+export default Page;
