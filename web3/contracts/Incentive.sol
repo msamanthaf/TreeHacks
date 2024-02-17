@@ -10,6 +10,7 @@ contract Incentive {
         string targetAge;
         string description;
         string evidence;
+		string date;
         address[] seeker;
     }
 
@@ -22,7 +23,8 @@ contract Incentive {
         string memory _targetName,
         string memory _targetAge,
         string memory _description,
-        string memory _evidence
+        string memory _evidence,
+		string memory _date
     ) public returns (uint256) {
         Report storage report = reports[numberOfReports];
 
@@ -32,6 +34,7 @@ contract Incentive {
         report.targetAge = _targetAge;
         report.description = _description;
         report.evidence = _evidence;
+		report.date = _date;
         
         numberOfReports++;
 

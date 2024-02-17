@@ -7,14 +7,16 @@ const Form = ({ titleData, createReport }) => {
     title: "",
     description: "",
     evidence: "",
+	date: "",
   });
 
   const createNewReport = async (e) => {
     e.preventDefault();
-
     try {
+	  const currentDate = new Date().toISOString().split('T')[0];
+	  setReport({...report, date: currentDate});
       const data = await createReport(report);
-	  //window.location.reload();
+	  window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -25,8 +27,8 @@ const Form = ({ titleData, createReport }) => {
       <div className="relative flex flex-row px-4 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 items-center justify-center">
         <div className="flex flex-col items-center justify-center xl:flex-row w-1/2">
           <div className="w-full">
-            <h2 className="max-w-lg mb-6 font-sans text-5xl font-bold tracking-tight text-white sm:text-5xl sm:leading-none">
-              LOST N FOUND <br />
+            <h2 className="max-w-lg mb-6 font-sans text-xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+              SHERBLOCK-CHAIN <br />
               Save a LIFE today!
             </h2>
             <p className="text-stone-50">
@@ -71,10 +73,7 @@ const Form = ({ titleData, createReport }) => {
           </label>
           <input
             onChange={(e) => {
-              const age = parseInt(e.target.value);
-              if (!isNaN(age) && age > 0) {
-                setReport({ ...report, targetAge: age });
-              }
+                setReport({ ...report, targetAge: e.target.value });
             }}
             placeholder="Age"
             required
@@ -109,12 +108,13 @@ const Form = ({ titleData, createReport }) => {
             id="evidence"
             name="evidence"
           />
-
-          <button
-            onClick={(e) => createNewReport(e)}
-            type="submit"
-            className="self-center mt-5 mb-5 inline-flex items-center justify-center w-3/4 h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-slate-700"
-          >
+<button
+    onClick={(e) => {
+        createNewReport(e);
+    }}
+    type="submit"
+    className="self-center mt-5 mb-5 inline-flex items-center justify-center w-3/4 h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-slate-700"
+>
             Submit Report
           </button>
         </form>
