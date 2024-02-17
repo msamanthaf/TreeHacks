@@ -92,21 +92,28 @@ export const IncentiveProvider = ({ children }) => {
 		return userData;
 	};
 
-	const pay = async (pId, amount) => {
-		const web3modal = new Wenb3Modal();
+	const pay = async (finder, amount) => {
+		const web3modal = new Web3Modal();
 		const connection = await web3modal.connect();
 		const provider = new ethers.providers.Web3Provider(connection);
 		const signer = provider.getSigner();
 		const contract = fetchContract(signer);
 
-		const reportData = await contract.payToReport(pId, {
-			value: ethers.utils.parseEther(amount),
-		});
+		// Convert the string address to an Ethereum address
+		const finderAddress = ethers.utils.getAddress(finder);
 
-		await reportData.wait();
-		location.reload();
+		try {
+			const transaction = await contract.send(finderAddress, {
+				value: ethers.utils.parseEther(amount),
+			});
 
-		return reportData;
+			await transaction.wait();
+			console.log("Payment successful");
+			return transaction;
+		} catch (error) {
+			console.error("Error paying to report:", error);
+			throw error;
+		}
 	};
 
 	const checkIfWalletConnected = async () => {

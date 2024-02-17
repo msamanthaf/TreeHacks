@@ -41,15 +41,13 @@ contract Incentive {
         return numberOfReports - 1;
     }
 
-    function payToReport(uint256 _id) public payable {
-        uint256 amount = msg.value;
-        Report storage report = reports[_id];
-
-        report.seeker.push(msg.sender);
-        
-        (bool sent,) = payable(report.finder).call{value: amount}("");
-        require(sent, "Payment failed");
+ function send(address to) external payable {
+        (bool success,) = to.call{value: msg.value}("");
+        if (!success) {
+            revert("Failed to send ETH");
+        }
     }
+
 
     function getReports() public view returns (Report[] memory) {
         Report[] memory allReports = new Report[](numberOfReports);
