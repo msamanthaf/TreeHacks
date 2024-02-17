@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Wenb3Modal from "web3modal";
+import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 
 import { IncentiveABI, IncentiveAddress } from "./constants";
@@ -15,8 +15,9 @@ export const IncentiveProvider = ({ children }) => {
 	const [currentAccount, setCurrentAccount] = useState("");
 
 	const createReport = async (report) => {
-		const { title, targetName, targetAge, description, evidence } = report;
-		const web3modal = new Wenb3Modal();
+		const { title, targetName, targetAge, description, evidence, date } =
+			report;
+		const web3modal = new Web3Modal();
 		const connection = await web3modal.connect();
 		const provider = new ethers.providers.Web3Provider(connection);
 		const signer = provider.getSigner();
@@ -31,7 +32,8 @@ export const IncentiveProvider = ({ children }) => {
 				targetName,
 				targetAge,
 				description,
-				evidence
+				evidence,
+				date
 			);
 
 			await transaction.wait();
@@ -54,6 +56,7 @@ export const IncentiveProvider = ({ children }) => {
 			targetName: report.targetName,
 			description: report.description,
 			evidence: report.evidence,
+			date: report.date,
 			pId: i,
 		}));
 
@@ -72,8 +75,7 @@ export const IncentiveProvider = ({ children }) => {
 		const currentUser = accounts[0];
 
 		const filteredReports = allReports.filter(
-			(report) =>
-				report.finder === "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+			(report) => report.finder.toLowerCase() === currentAccount
 		);
 
 		const userData = filteredReports.map((report, i) => ({
@@ -83,6 +85,7 @@ export const IncentiveProvider = ({ children }) => {
 			targetName: report.targetName,
 			description: report.description,
 			evidence: report.evidence,
+			date: report.date,
 			pId: i,
 		}));
 
