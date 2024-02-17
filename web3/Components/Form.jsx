@@ -14,7 +14,7 @@ const Form = ({ titleData, createReport }) => {
 
     try {
       const data = await createReport(report);
-	  window.location.reload();
+	  //window.location.reload();
     } catch (error) {
       console.log(error);
     }
