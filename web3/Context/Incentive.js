@@ -56,7 +56,9 @@ export const IncentiveProvider = ({ children }) => {
 	};
 
 	const getReports = async () => {
-		const provider = new ethers.providers.JsonRpcProvider();
+		const provider = new ethers.providers.JsonRpcProvider(
+			"https://treehacks-devnet.rpc.caldera.xyz/http"
+		);
 		const contract = fetchContract(provider);
 
 		const reports = await contract.getReports();
@@ -79,7 +81,9 @@ export const IncentiveProvider = ({ children }) => {
 	};
 
 	const getUserReports = async () => {
-		const provider = new ethers.providers.JsonRpcProvider();
+		const provider = new ethers.providers.JsonRpcProvider(
+			"https://treehacks-devnet.rpc.caldera.xyz/http"
+		);
 		const contract = fetchContract(provider);
 
 		const allReports = await contract.getReports();

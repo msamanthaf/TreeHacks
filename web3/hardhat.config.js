@@ -1,16 +1,18 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
+
+const chainId = process.env.CHAIN_ID;
+const rpcUrl = process.env.RPC_URL;
+const privateKey = process.env.PRIVATE_KEY;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.18",
-  // networks: {
-  //   polygon_mumbai: {
-  //     chainId: 80001,
-  //     url: "https://polygon-mumbai.g.alchemy.com/v2/0awa485pp03Dww2fTjrSCg7yHlZECw-K",
-  //     // url: process.env.POLYGON_MUMBAI,
-  //     accounts: [
-  //       `0x${"YOUR ADDRESS"}`,
-  //     ],
-  //   },
-  // },
+	solidity: "0.8.18",
+	networks: {
+		caldera: {
+			url: rpcUrl,
+			chainId: parseInt(chainId),
+			accounts: [privateKey],
+		},
+	},
 };
