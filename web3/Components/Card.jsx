@@ -1,7 +1,19 @@
+"use client";
 import React from 'react'
 
-export const Card = () => {
+const Card = ({allreport, setOpenModel, setPay, title}) => {
+	console.log(allreport);
   return (
-	<div>Card</div>
+	<div>
+		{allreport?.map((report, i) => {
+			<div onClick={() => (setPay(report), setOpenModel(true))}
+			key={i+1}
+			className='flex justify-center items-center'>
+				Name
+			</div>
+		})}
+	</div>
   )
 }
+
+export default Card
