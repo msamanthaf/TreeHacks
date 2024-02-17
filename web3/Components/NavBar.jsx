@@ -1,9 +1,7 @@
 import React from 'react'
 
-function NavBar() {
+export const NavBar = () => {
   return (
-	<div>App Name</div>
+	<div>NavBar</div>
   )
 }
-
-export default NavBar
