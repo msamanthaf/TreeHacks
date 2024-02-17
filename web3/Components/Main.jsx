@@ -8,13 +8,14 @@ import dynamic from 'next/dynamic'
 const Form = dynamic(() => import('../Components/Form'), { ssr: false })
 
 function Main() {
-    const { titleData, getReports, createReport, pay, getUserReports, getPays } = useContext(IncentiveContext);
-
+    const { titleData, getReports, createReport, pay, getUserReports, getPays, rejectReport } = useContext(IncentiveContext);
+	
     const [allreport, setAllreport] = useState([]);
     const [userreport, setUserreport] = useState([]);
     const [openModel, setOpenModel] = useState(false);
     const [payReport, setPayReport] = useState(null);
 	const { currentAccount, connectWallet } = useContext(IncentiveContext);
+	const authority = currentAccount == "0x1aD46072B82B0210c4c55519260CAfBFE7A16448".toLowerCase();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +24,7 @@ function Main() {
                 const userData = await getUserReports();
                 setAllreport(allData);
                 setUserreport(userData);
+				console.log(authority);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -52,12 +54,12 @@ function Main() {
                     Connect Wallet
                 </button>
             )}
-            <Form titleData={titleData} createReport={createReport} selectedCountry={getSelectedCountry()}/>
-            <Card title="All Reports" reports={allreport} openModel={handleOpenModel} setPay={setPayReport} setOpenModel={setOpenModel}/>
-            <Card title="Your Reports" reports={userreport} openModel={handleOpenModel} setPay={setPayReport} setOpenModel={setOpenModel}/>
+            <Form titleData={titleData} createReport={createReport} selectedCountry={getSelectedCountry()} authority={authority}/>
+            <Card title="All Reports" reports={allreport} openModel={handleOpenModel} setPay={setPayReport} setOpenModel={setOpenModel} visible={true} authority={authority}/>
+            {!authority && <Card title="Your Reports" reports={userreport} openModel={handleOpenModel} setPay={setPayReport} setOpenModel={setOpenModel} visible={false}/>}
 
             {openModel && (
-                <Payment setOpenModel={setOpenModel} pay={payReport} payFunction={pay} />
+                <Payment setOpenModel={setOpenModel} pay={payReport} payFunction={pay} reject={rejectReport} authority={authority}/>
             )}
         </>
     );
