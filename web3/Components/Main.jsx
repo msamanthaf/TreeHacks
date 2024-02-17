@@ -26,7 +26,7 @@ function Main() {
 
 	return (
 		<>
-			<Form/>
+			<Form titleData={titleData} createReport={createReport}/>
 			<Card title="All Reports" allreport={allreport} setOpenModel={setOpenModel} setPay={setPayReport} />
 			<Card title="Your Reports" allreport={userReport} setOpenModel={setOpenModel} setPay={setPayReport} />
 		</>

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
 	title: "OSINT Blockchain",
 	describe:
-		"Blockchain-powered web3 app for crowdsourcing (OSINT) information gathering to aid in missing person cases.",
+		"Blockchain-powered web3 app for crowdsourcing (OSINT) information gathering to help solve missing person cases.",
 };
 
 export default function RootLayout({ children }) {

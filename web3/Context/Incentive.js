@@ -15,7 +15,7 @@ export const IncentiveProvider = ({ children }) => {
 	const [currentAccount, setCurrentAccount] = useState("");
 
 	const createReport = async (report) => {
-		const { title, name, age, description, evidence } = report;
+		const { title, targetName, targetAge, description, evidence } = report;
 		const web3modal = new Wenb3Modal();
 		const connection = await web3modal.connect();
 		const provider = new ethers.providers.Web3Provider(connection);
@@ -31,8 +31,7 @@ export const IncentiveProvider = ({ children }) => {
 				targetName,
 				targetAge,
 				description,
-				evidence,
-				ethers.utils.parseUnits(amount, 18)
+				evidence
 			);
 
 			await transaction.wait();
