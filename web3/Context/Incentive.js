@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import Wenb3Modal from "web3modal";
 import { ethers } from "ethers";
