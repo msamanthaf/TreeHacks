@@ -41,7 +41,7 @@ const Form = ({ createReport, selectedCountry, authority }) => {
         <div className="flex flex-col items-center justify-center xl:flex-row w-1/2">
           <div className="w-full">
             <h2 className="max-w-lg mb-6 font-sans text-xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-              SHERBLOCK-CHAIN <br />
+              SHERBLOCK <br />
               Save a LIFE today!
             </h2>
             <p className="text-stone-50">
