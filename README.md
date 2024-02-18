@@ -15,15 +15,15 @@ Millions of people disappear every year, according to the International Commissi
 -   cd web3
 -   npm install
 
-Caldera network:
+Caldera chain (ETH):
 
 -   Connect wallet and receive Caldera ETH through faucet: https://treehacks-devnet.hub.caldera.xyz/
 -   Create .env file with your personal key in a constant named CALDERA_PRIVATE_KEY, and your rpc url in CALDERA_RPC_URL
 -   npx hardhat run --caldera localhost scripts/deploy.js
 
-Avalanche network:
+Avalanche Fuji chain (AVAX):
 
--   Connect wallet and receive Avalanche ETH through faucet:
+-   Connect wallet and receive Avalanche ETH through faucet: https://faucets.chain.link/fuji
 -   Create .env file with your personal key in a constant named AVALANCHE_PRIVATE_KEY, and your rpc url in AVALANCHE_RPC_URL
 -   npx hardhat run --avalanche localhost scripts/deploy.js
 
