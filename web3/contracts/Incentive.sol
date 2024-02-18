@@ -18,32 +18,42 @@ contract Incentive {
     }
 
     mapping(uint256 => Report) public reports;
+    mapping(bytes32 => bool) private evidenceExists; // Mapping to track existence of evidence hashes
     uint256 public numberOfReports = 0;
 
     function createReport(
         address _finder,
-		string memory _category,
+        string memory _category,
         string memory _title,
         string memory _targetName,
         string memory _targetAge,
         string memory _description,
         string memory _evidence,
-		string memory _date,
-		string memory _status,
-		string memory _rejectionReason
+        string memory _date,
+        string memory _status,
+        string memory _rejectionReason
     ) public returns (uint256) {
-        Report storage report = reports[numberOfReports];
+        // Compute hash of evidence link
+        bytes32 evidenceHash = keccak256(abi.encodePacked(_evidence));
 
+        // Check if evidence hash already exists
+        require(!evidenceExists[evidenceHash], "Evidence already exists");
+        
+        // Mark evidence hash as existing
+        evidenceExists[evidenceHash] = true;
+
+        // Create report
+        Report storage report = reports[numberOfReports];
         report.finder = _finder;
-		report.category = _category;
+        report.category = _category;
         report.title = _title;
         report.targetName = _targetName;
         report.targetAge = _targetAge;
         report.description = _description;
         report.evidence = _evidence;
-		report.date = _date;
-		report.status = _status;
-		report.rejectionReason = _rejectionReason;
+        report.date = _date;
+        report.status = _status;
+        report.rejectionReason = _rejectionReason;
         
         numberOfReports++;
 
@@ -66,8 +76,6 @@ contract Incentive {
         // Set the status to "accepted"
         reports[reportId].status = "accepted";
     }
-
-
 
     function getReports() public view returns (Report[] memory) {
         Report[] memory allReports = new Report[](numberOfReports);
