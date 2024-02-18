@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { IncentiveContext } from '../Context/Incentive';
 import { setSelectedCountry, getSelectedCountry } from '../Context/constants';
 import Image from 'next/image';
-import whitelogo from '../public/whitelogo.png'
+import whitelogo from '../public/whitelogo.png';
+import metamask from '../public/metamask.png';
 
 function SignIn() {
     const { currentAccount, connectWallet } = useContext(IncentiveContext);
@@ -36,13 +37,15 @@ function SignIn() {
 			 <p className='text-white'>Save lives, rewards arrive</p>
             <div style={{ boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', backgroundColor: 'white', padding: '40px', borderRadius: '8px', textAlign: 'center' }} className='mt-5'>
                 {currentAccount ? (
-                    <button disabled className='bg-emerald-500 h-10 w-50 px-3 rounded-md text-stone-50' aria-label='Sign Up' title='Sign Up'>
-                        Wallet Connected to: {deprecateString(currentAccount)}
-                    </button>
-                ) : (
-                    <button onClick={() => connectWallet()} className='bg-emerald-500 text-stone-50' aria-label='Sign Up' title='Sign Up'>
-                        Connect Wallet
-                    </button>
+                    <button disabled className='bg-stone-500 gap-5 flex flex-row rounded-md z-50 px-3 h-10 w-96 justify-center items-center text-stone-50' aria-label='Sign Up' title='Sign Up'>
+					<Image src={metamask} alt="Metamask Logo" width={30}/>
+				   <p >Wallet Connected to: {deprecateString(currentAccount)}</p>
+			   </button>
+		   ) : (
+			   <button onClick={() => connectWallet()} className='bg-stone-500 gap-5 flex flex-row rounded-md z-50 px-3 text-stone-50' aria-label='Sign Up' title='Sign Up'>
+				   <Image src={metamask} alt="Metamask Logo" width={30}/>
+				   <p >Connect Wallet</p>
+			   </button>
                 )}
 
                 <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>

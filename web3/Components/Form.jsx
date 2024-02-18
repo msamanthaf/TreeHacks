@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { getSelectedCountry } from '../Context/constants';
+import whitelogo from '../public/whitelogo.png'
+import Image from 'next/image';
 
 const Form = ({ createReport, selectedCountry, authority }) => {
   const [report, setReport] = useState({
@@ -40,10 +42,7 @@ const Form = ({ createReport, selectedCountry, authority }) => {
       <div className="relative flex flex-row px-4 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 items-center justify-center">
         <div className="flex flex-col items-center justify-center xl:flex-row w-1/2">
           <div className="w-full">
-            <h2 className="max-w-lg mb-6 font-sans text-xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-              SHERBLOCK <br />
-              Save a LIFE today!
-            </h2>
+		  <Image src={whitelogo} alt="Sherblock Logo" className="mb-6" width={300}/>
             <p className="text-stone-50">
               Blockchain-powered web3 app for crowdsourcing information gathering (OSINT) to help solve missing person cases.
             </p>
@@ -54,7 +53,7 @@ const Form = ({ createReport, selectedCountry, authority }) => {
   }
   target="_blank"
   aria-label=""
-  className="mt-10 inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700 text-gray-200"
+  className="mt-10 inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700 text-gray-200 underline" style={{fontSize: "20px"}}
 >
   {selectedCountry}'s List of Missing People ➪
 </a>
