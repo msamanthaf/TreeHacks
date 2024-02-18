@@ -1,4 +1,4 @@
-# TreeHacks
+# Sherblock - [TreeHacks 2024]
 
 Blockchain-powered web3 app for crowdsourcing information gathering (OSINT) to help solve missing person cases.
 
