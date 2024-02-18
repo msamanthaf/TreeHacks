@@ -13,6 +13,7 @@ export const IncentiveContext = React.createContext();
 export const IncentiveProvider = ({ children }) => {
 	const titleData = "Incentive Contract";
 	const [currentAccount, setCurrentAccount] = useState("");
+	const RPC_URL = "https://api.avax-test.network/ext/bc/C/rpc";
 
 	const createReport = async (report) => {
 		const {
@@ -56,9 +57,7 @@ export const IncentiveProvider = ({ children }) => {
 	};
 
 	const getReports = async () => {
-		const provider = new ethers.providers.JsonRpcProvider(
-			"https://treehacks-devnet.rpc.caldera.xyz/http"
-		);
+		const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 		const contract = fetchContract(provider);
 
 		const reports = await contract.getReports();
@@ -81,9 +80,7 @@ export const IncentiveProvider = ({ children }) => {
 	};
 
 	const getUserReports = async () => {
-		const provider = new ethers.providers.JsonRpcProvider(
-			"https://treehacks-devnet.rpc.caldera.xyz/http"
-		);
+		const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 		const contract = fetchContract(provider);
 
 		const allReports = await contract.getReports();

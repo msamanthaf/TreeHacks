@@ -29,7 +29,7 @@ const setIncentiveAddress = () => {
 	IncentiveAddress =
 		selectedCountry === "USA"
 			? "0x6736231524CD430F5F378e5b75f6c097Df539B89"
-			: "0x72aAaC2727ccEFEFA7664D65a5fB2BFe3B45c513";
+			: "0xdA7c397bAFc1B2aA4CF6F13cFd3068E30207934a";
 	// Check if localStorage is available (client-side)
 	if (typeof window !== "undefined") {
 		localStorage.setItem("IncentiveAddress", IncentiveAddress);
