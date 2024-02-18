@@ -19,13 +19,13 @@ Caldera chain (ETH):
 
 -   Connect wallet and receive Caldera ETH through faucet: https://treehacks-devnet.hub.caldera.xyz/
 -   Create .env file with your personal key in a constant named CALDERA_PRIVATE_KEY, and your rpc url in CALDERA_RPC_URL
--   npx hardhat run --caldera localhost scripts/deploy.js
+-   npx hardhat run --caldera scripts/deploy.js
 
 Avalanche Fuji chain (AVAX):
 
 -   Connect wallet and receive Avalanche ETH through faucet: https://faucets.chain.link/fuji
 -   Create .env file with your personal key in a constant named AVALANCHE_PRIVATE_KEY, and your rpc url in AVALANCHE_RPC_URL
--   npx hardhat run --avalanche localhost scripts/deploy.js
+-   npx hardhat run scripts/deploy.js --network fuji
 
 -   Artifacts folder -> Contracts -> Drag Incentive.json and Verifier.json to Context folder
 -   Copy the 'deployed to' address and paste to constants file in either country

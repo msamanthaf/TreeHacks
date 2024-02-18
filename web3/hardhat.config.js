@@ -16,7 +16,7 @@ module.exports = {
 			chainId: parseInt(calderaChainId),
 			accounts: [privateKey],
 		},
-		avalanche: {
+		fuji: {
 			url: avalancheRpcUrl,
 			chainId: parseInt(avalancheChainId),
 			accounts: [privateKey],
