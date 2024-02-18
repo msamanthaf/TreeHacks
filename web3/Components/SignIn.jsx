@@ -42,7 +42,7 @@ function SignIn() {
 				   <p >Wallet Connected to: {deprecateString(currentAccount)}</p>
 			   </button>
 		   ) : (
-			   <button onClick={() => connectWallet()} className='bg-stone-500 gap-5 flex flex-row rounded-md z-50 px-3 text-stone-50' aria-label='Sign Up' title='Sign Up'>
+			   <button onClick={() => connectWallet()} className='bg-stone-500 justify-center items-center gap-5 flex flex-row rounded-md z-50 px-3 text-stone-50' aria-label='Sign Up' title='Sign Up'>
 				   <Image src={metamask} alt="Metamask Logo" width={30}/>
 				   <p >Connect Wallet</p>
 			   </button>
