@@ -4,7 +4,7 @@ Blockchain-powered web3 app for crowdsourcing information gathering (OSINT) to h
 
 Millions of people disappear every year, according to the International Commission on Missing People. By harnessing the power of open-source intelligence, Sherblock offers a promising avenue for gathering crucial clues and information that could aid in the search for missing person cases.
 
--   To ensure the integrity and transparency of information shared through Sherblock, I adopted an approach of only granting permitted authorities the ability to verify the reports. Relatives of the victims can offer support at their own discretion.
+- To enhance the integrity of information shared through Sherblock, a measure has been implemented wherein the general public is restricted to viewing only the name, age, and associated tag without access to the evidence link. This approach ensures that only permitted authorities can verify the reports. Relatives of the victims retain the option to offer support at their own discretion within this framework.
 
 -   My decision to limit data collection solely to government official postings and to report only publicly available resources online through public links ensures that Sherblock upholds ethical standards regarding data privacy and consent, without granting special treatment to any groups. Blockchain technology allows for tracking all activities with the address of the reporter, and any unacceptable behaviors will not be tolerated and could be addressed legally.
 
