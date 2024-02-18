@@ -18,13 +18,15 @@ Millions of people disappear every year, according to the International Commissi
 Caldera chain (ETH):
 
 -   Connect wallet and receive Caldera ETH through faucet: https://treehacks-devnet.hub.caldera.xyz/
--   Create .env file with your personal key in a constant named CALDERA_PRIVATE_KEY, and your rpc url in CALDERA_RPC_URL
+-   Create .env file with your personal key in a constant named PRIVATE_KEY, chain id in CHAIN_ID, and your rpc url in RPC_URL
+-   Open the Incentive.js inside Context folder, and put in your chain network url into the constant RPC_URL
 -   npx hardhat run --caldera scripts/deploy.js
 
 Avalanche Fuji chain (AVAX):
 
 -   Connect wallet and receive Avalanche ETH through faucet: https://faucets.chain.link/fuji
--   Create .env file with your personal key in a constant named AVALANCHE_PRIVATE_KEY, and your rpc url in AVALANCHE_RPC_URL
+-   Create .env file with your personal key in a constant named PRIVATE_KEY, chain id in CHAIN_ID, and your rpc url in RPC_URL
+-   Open the Incentive.js inside Context folder, and put in your chain network url into the constant RPC_URL
 -   npx hardhat run scripts/deploy.js --network fuji
 
 -   Artifacts folder -> Contracts -> Drag Incentive.json and Verifier.json to Context folder
