@@ -21,6 +21,9 @@ Caldera chain (ETH):
 -   Create .env file with your personal key in a constant named PRIVATE_KEY, chain id in CHAIN_ID, and your rpc url in RPC_URL
 -   Open the Incentive.js inside Context folder, and put in your chain network url into the constant RPC_URL
 -   npx hardhat run --caldera scripts/deploy.js
+-   Artifacts folder -> Contracts -> Drag Incentive.json and Verifier.json to Context folder
+-   Copy the 'deployed to' address and paste to constants file in either country
+-   npm run dev
 
 Avalanche Fuji chain (AVAX):
 
@@ -28,7 +31,6 @@ Avalanche Fuji chain (AVAX):
 -   Create .env file with your personal key in a constant named PRIVATE_KEY, chain id in CHAIN_ID, and your rpc url in RPC_URL
 -   Open the Incentive.js inside Context folder, and put in your chain network url into the constant RPC_URL
 -   npx hardhat run scripts/deploy.js --network fuji
-
 -   Artifacts folder -> Contracts -> Drag Incentive.json and Verifier.json to Context folder
 -   Copy the 'deployed to' address and paste to constants file in either country
 -   npm run dev
