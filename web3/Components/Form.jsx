@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getSelectedCountry } from '../Context/constants';
 import whitelogo from '../public/whitelogo.png'
 import description from '../public/description.png'
+import description2 from '../public/descriptionmid.png'
 import Image from 'next/image';
 
 const Form = ({ createReport, selectedCountry, authority }) => {
@@ -42,9 +43,15 @@ const Form = ({ createReport, selectedCountry, authority }) => {
     <div className="relative bg-opacity-75">
       <div className="relative flex flex-row px-4 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 items-center justify-center">
         <div className="flex flex-col items-center justify-center xl:flex-row w-1/2">
-          <div className="w-full">
+		<div className={`w-full ${authority ? 'flex flex-col mt-20 justify-center items-center' : 'w-full'}`}>
 		  <Image src={whitelogo} alt="Sherblock Logo" className="mb-6" width={300}/>
-		  <Image src={description} alt="Sherblock description" width={400}/>
+		  {authority && (
+  <Image src={description2} alt="Sherblock description" width={400} />
+)}
+{!authority && (
+  <Image src={description} alt="Sherblock description" width={400} />
+)}
+
 			<a
   href={selectedCountry === "USA"
       ? "https://www.namus.gov/MissingPersons/Search#/results"
