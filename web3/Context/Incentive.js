@@ -13,7 +13,8 @@ export const IncentiveContext = React.createContext();
 export const IncentiveProvider = ({ children }) => {
 	const titleData = "Incentive Contract";
 	const [currentAccount, setCurrentAccount] = useState("");
-	const RPC_URL = "https://api.avax-test.network/ext/bc/C/rpc";
+	const RPC_URL = "https://treehacks-devnet.rpc.caldera.xyz/http";
+	// const RPC_URL = "https://api.avax-test.network/ext/bc/C/rpc";
 
 	const createReport = async (report) => {
 		const {
