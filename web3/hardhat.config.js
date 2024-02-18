@@ -1,8 +1,10 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
-const chainId = process.env.CHAIN_ID;
-const rpcUrl = process.env.RPC_URL;
+const calderaChainId = process.env.CALDERA_CHAIN_ID;
+const calderaRpcUrl = process.env.CALDERA_RPC_URL;
+const avalancheChainId = process.env.AVALANCHE_CHAIN_ID;
+const avalancheRpcUrl = process.env.AVALANCHE_RPC_URL;
 const privateKey = process.env.PRIVATE_KEY;
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -10,8 +12,13 @@ module.exports = {
 	solidity: "0.8.18",
 	networks: {
 		caldera: {
-			url: rpcUrl,
-			chainId: parseInt(chainId),
+			url: calderaRpcUrl,
+			chainId: parseInt(calderaChainId),
+			accounts: [privateKey],
+		},
+		avalanche: {
+			url: avalancheRpcUrl,
+			chainId: parseInt(avalancheChainId),
 			accounts: [privateKey],
 		},
 	},
