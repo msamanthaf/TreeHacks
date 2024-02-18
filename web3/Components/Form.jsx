@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getSelectedCountry } from '../Context/constants';
 import whitelogo from '../public/whitelogo.png'
+import description from '../public/description.png'
 import Image from 'next/image';
 
 const Form = ({ createReport, selectedCountry, authority }) => {
@@ -43,9 +44,7 @@ const Form = ({ createReport, selectedCountry, authority }) => {
         <div className="flex flex-col items-center justify-center xl:flex-row w-1/2">
           <div className="w-full">
 		  <Image src={whitelogo} alt="Sherblock Logo" className="mb-6" width={300}/>
-            <p className="text-stone-50">
-              Blockchain-powered web3 app for crowdsourcing information gathering (OSINT) to help solve missing person cases.
-            </p>
+		  <Image src={description} alt="Sherblock description" width={400}/>
 			<a
   href={selectedCountry === "USA"
       ? "https://www.namus.gov/MissingPersons/Search#/results"
@@ -59,7 +58,7 @@ const Form = ({ createReport, selectedCountry, authority }) => {
 </a>
           </div>
         </div>
-		{!authority && <form className="flex flex-col w-1/2 ml-28 bg-white rounded">
+		{!authority && <form className="mt-10 flex flex-col w-1/2 ml-28 bg-white rounded">
           <text className="self-center font-bold mt-5"> Report Submission</text>
 		  <label className="ml-5 mt-5 inline-block mb-1 font-medium" htmlFor="relationship">
             Category
